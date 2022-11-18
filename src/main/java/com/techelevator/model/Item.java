@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Item {
 
+    // Declarations
     private String slotID;
     private String name;
     private BigDecimal price;
@@ -25,6 +26,7 @@ public class Item {
         return type;
     }
 
+    // Constructor
     public Item(String slotID, String name, BigDecimal price, String type) {
         this.slotID = slotID;
         this.name = name;
@@ -32,15 +34,18 @@ public class Item {
         this.type = type;
     }
 
+
     @Override
     public String toString() {
         return slotID + ": " + name + ", price= $" + price.setScale(2);
     }
 
+
     public String dispensingItemNameAndPrice(){
         return name + ", price= $" + price.setScale(2);
     }
 
+    
     public String getMessage(){
         String result = "";
 

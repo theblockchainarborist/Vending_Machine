@@ -27,7 +27,6 @@ public class ObjectLoader {
                 }
             }
         }catch (FileNotFoundException fnf){
-            //Do nothing, No File, Return an empty List
             System.out.println(fnf.getMessage());
         }
         return result;

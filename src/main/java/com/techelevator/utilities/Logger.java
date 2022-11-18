@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logger {
+
+    // Declarations
     private String logFileName;
     private PrintWriter logWriter = null;
 
@@ -14,6 +16,7 @@ public class Logger {
     public Logger(String logFileName) {
         this.logFileName = logFileName;
     }
+
 
     public void log(String message) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
@@ -26,7 +29,6 @@ public class Logger {
         }
     }
 
-    //LocalTime.now().toString()
 
     public void salesLog(String message) {
         try (PrintWriter newWriter = new PrintWriter(new FileOutputStream(new File("SalesReports/" + logFileName + ".txt"), true))) {

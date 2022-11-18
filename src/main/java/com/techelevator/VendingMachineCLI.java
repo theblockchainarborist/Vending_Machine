@@ -4,7 +4,6 @@ import com.techelevator.model.Item;
 import com.techelevator.utilities.Logger;
 import com.techelevator.utilities.ObjectLoader;
 import com.techelevator.view.Menu;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
@@ -15,6 +14,7 @@ import java.util.*;
 
 public class VendingMachineCLI {
 
+	// Declarations
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_EXIT = "Exit";
@@ -59,6 +59,7 @@ public class VendingMachineCLI {
 		cli.run();
 	}
 
+
 	private void stockVendingMachine() {
 		File inventoryFile = new File("vendingmachine.csv");
 		selectionsAvailable = ObjectLoader.generateInventoryItems(inventoryFile);
@@ -68,7 +69,6 @@ public class VendingMachineCLI {
 			for (int i = 0; i < DEFAULT_MAX_ITEMS; i++) {
 				itemInventory.add(item);
 			}
-
 			currentInventory.put(item.getSlotID().toLowerCase(), itemInventory);
 		}
 	}
@@ -78,6 +78,7 @@ public class VendingMachineCLI {
 		System.out.println("WELCOME THE VENDING MACHINE OF THE FUTURE!!!");
 		mainMenu();
 	}
+
 
 	private void mainMenu() {
 		boolean runMainMenu = true;
@@ -122,6 +123,7 @@ public class VendingMachineCLI {
 		}
 	}
 
+
 	private void purchaseMenu() {
 		boolean runPurchaseMenu = true;
 
@@ -137,14 +139,11 @@ public class VendingMachineCLI {
 					feedMoney();
 					break;
 				case (PURCHASE_MENU_SELECT_PRODUCT):
-
 					BigDecimal lowestPrice = new BigDecimal(0);
-
 					// Grab a starting value
 					for (Item item : selectionsAvailable.values()) {
 						lowestPrice = item.getPrice();
 					}
-
 					// Loop over the item map to find the lowest price.
 					for (Item item : selectionsAvailable.values()) {
 						if (item.getPrice().compareTo(lowestPrice) == -1) {
@@ -155,7 +154,7 @@ public class VendingMachineCLI {
 					while (balance.compareTo(lowestPrice) != -1) {
 						selectProducts();
 					}
-//                    selectProducts();
+
 					System.out.println("\n*** Must add funds or finish transaction ***");
 					break;
 				case (PURCHASE_MENU_FINISH_TRANSACTION):
@@ -167,8 +166,8 @@ public class VendingMachineCLI {
 					break;
 			}
 		}
-
 	}
+
 
 	private void feedMoney() {
 		boolean runFeedMoney = true;
@@ -206,6 +205,7 @@ public class VendingMachineCLI {
 		}
 	}
 
+
 	private void selectProducts() {
 		printCurrentStock();
 
@@ -238,6 +238,7 @@ public class VendingMachineCLI {
 			}
 		}
 	}
+
 
 	private void finishTransaction() {
 		int remainingBalance = (balance.multiply(new BigDecimal(100.00))).intValue();
@@ -328,6 +329,7 @@ public class VendingMachineCLI {
 		}
 		salesReport.salesLog("**TOTAL SALES ** $" + totalSales.setScale(2));
 	}
+
 
 	private File getFileFromPath(String sourcePath) throws FileNotFoundException {
 		File inputFile = new File(sourcePath);
